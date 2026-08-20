@@ -1,7 +1,7 @@
 class Secretd < Formula
   desc "macOS secret broker daemon and control CLI"
   homepage "https://github.com/MikcleGrok/secretd"
-  version "1.0.19"
+  version "1.0.26"
   release_asset = "secretd-#{version}-darwin-arm64.tar.gz"
   artifact = ENV["HOMEBREW_SECRETD_ARTIFACT"]
   if artifact
@@ -9,7 +9,7 @@ class Secretd < Formula
     sha256 ENV.fetch("HOMEBREW_SECRETD_ARTIFACT_SHA256")
   else
     url "https://github.com/MikcleGrok/secretd/releases/download/v#{version}/#{release_asset}"
-    sha256 "5e84b6ebc2304082762930b1e6a47d21c818c94be1eb4f45545d9f440a4083cf"
+    sha256 "fdd88db4439fc1c991ca8d04ff59bd6989d9a0a7f805963cb298a912c857a3b0"
   end
   license "MIT"
   depends_on :macos
