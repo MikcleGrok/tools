@@ -1,3 +1,41 @@
+# MikcleGrok/uni-db is a private repository, and Homebrew's built-in
+# CurlDownloadStrategy has no support for private GitHub Release assets
+# (GitHubPrivateRepositoryReleaseDownloadStrategy was removed from Homebrew
+# core) -- a plain `url` line 404s even with HOMEBREW_GITHUB_API_TOKEN set,
+# since that env var alone doesn't change which strategy Homebrew picks.
+# This strategy resolves the asset through the GitHub REST API (which
+# redirects to a short-lived signed URL) using a token, falling back to
+# `gh auth token` when HOMEBREW_GITHUB_API_TOKEN isn't exported -- `gh` is
+# already a hard requirement of this tap's own publish script.
+class GitHubPrivateReleaseDownloadStrategy < CurlDownloadStrategy
+  def initialize(url, name, version, **meta)
+    super
+    match = url.match(%r{\Ahttps://github\.com/([^/]+)/([^/]+)/releases/download/([^/]+)/(.+)\z})
+    raise "unsupported private-release url: #{url}" unless match
+
+    _, @owner, @repo, @release_tag, @asset_name = *match
+  end
+
+  def token
+    return @token if defined?(@token)
+
+    @token = ENV["HOMEBREW_GITHUB_API_TOKEN"].presence
+    @token ||= Utils.safe_popen_read("gh", "auth", "token").strip.presence
+    @token || raise("Set HOMEBREW_GITHUB_API_TOKEN, or `gh auth login`, to install this private-repo formula")
+  end
+
+  def _fetch(url:, resolved_url:, timeout:)
+    api_url = "https://api.github.com/repos/#{@owner}/#{@repo}/releases/tags/#{@release_tag}"
+    release_json = curl_output("--fail", "--header", "Authorization: Bearer #{token}", "--header",
+                                "Accept: application/vnd.github+json", api_url).stdout
+    asset = JSON.parse(release_json)["assets"].find { |a| a["name"] == @asset_name }
+    raise "asset #{@asset_name} not found in release #{@release_tag}" unless asset
+
+    curl_download asset["url"], "--header", "Authorization: Bearer #{token}", "--header",
+                   "Accept: application/octet-stream", to: temporary_path
+  end
+end
+
 class UniDb < Formula
   desc "Read-only SQL CLI for production databases with macOS Keychain credentials"
   homepage "https://github.com/MikcleGrok/uni-db"
@@ -8,8 +46,9 @@ class UniDb < Formula
     url "file://#{artifact}"
     sha256 ENV.fetch("HOMEBREW_UNI_DB_ARTIFACT_SHA256")
   else
-    url "https://github.com/MikcleGrok/uni-db/releases/download/v#{version}/#{release_asset}"
-    sha256 "873c06f268796a0cd210d05c761556eca93d1d95a0d3c435fd147f92d49da204"
+    url "https://github.com/MikcleGrok/uni-db/releases/download/v#{version}/#{release_asset}",
+        using: GitHubPrivateReleaseDownloadStrategy
+    sha256 "f04ff36c5f2c4e2263e90f6f467fa82885f1e8310a7c29f5d7c8cb9eea8df4a8"
   end
   license "MIT"
   depends_on :macos
