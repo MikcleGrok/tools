@@ -39,7 +39,7 @@ end
 class UniDb < Formula
   desc "Read-only SQL CLI for production databases with macOS Keychain credentials"
   homepage "https://github.com/MikcleGrok/uni-db"
-  version "1.5.3"
+  version "1.5.5"
   release_asset = "uni-db-#{version}-darwin-arm64.tar.gz"
   artifact = ENV["HOMEBREW_UNI_DB_ARTIFACT"]
   if artifact
@@ -48,13 +48,13 @@ class UniDb < Formula
   else
     url "https://github.com/MikcleGrok/uni-db/releases/download/v#{version}/#{release_asset}",
         using: GitHubPrivateReleaseDownloadStrategy
-    sha256 "f04ff36c5f2c4e2263e90f6f467fa82885f1e8310a7c29f5d7c8cb9eea8df4a8"
+    sha256 "6712693976b68864fb1279d38a46d32cc85b13c4f1b407c023591b618f6172cf"
   end
   license "MIT"
   depends_on :macos
 
   def install
-    bin.install "uni-db", "uni-db-setup"
+    bin.install "uni-db", "uni-db-setup", "uni-db-touchid-auth"
     man1.install "man/uni-db.1", "man/uni-db-setup.1"
     bash_completion.install "completions/uni-db.bash" => "uni-db"
     bash_completion.install "completions/uni-db-setup.bash" => "uni-db-setup"
@@ -71,6 +71,10 @@ class UniDb < Formula
     assert_path_exists bash_completion/"uni-db-setup"
     assert_path_exists zsh_completion/"_uni-db"
     assert_path_exists zsh_completion/"_uni-db-setup"
+    # Not invoked here (it would trigger an interactive Touch ID/password
+    # prompt) -- uni-db's own touchid package fails closed on a missing
+    # helper, so presence + executability next to uni-db is what matters.
+    assert_predicate bin/"uni-db-touchid-auth", :executable?
     # The Homebrew install path is a distribution surface the Makefile's own
     # codesign gates (sign-local, verify-artifact) never cover — verify it
     # here instead, matching the identity/anti-adhoc check those gates use
