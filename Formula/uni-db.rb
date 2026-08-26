@@ -16,12 +16,22 @@ class GitHubPrivateReleaseDownloadStrategy < CurlDownloadStrategy
     _, @owner, @repo, @release_tag, @asset_name = *match
   end
 
+  # Download strategies run with Homebrew's own sanitized subprocess PATH
+  # (verified live: just `shims/shared:/usr/bin:/bin:/usr/sbin:/sbin`, no
+  # /opt/homebrew/bin) -- a bare "gh" lookup 127s even when `gh` is on the
+  # user's real shell PATH, so the fallback below checks known absolute
+  # install locations instead of relying on PATH resolution at all.
+  GH_CANDIDATES = ["/opt/homebrew/bin/gh", "/usr/local/bin/gh", "/home/linuxbrew/.linuxbrew/bin/gh"].freeze
+
   def token
     return @token if defined?(@token)
 
     @token = ENV["HOMEBREW_GITHUB_API_TOKEN"].presence
-    @token ||= Utils.safe_popen_read("gh", "auth", "token").strip.presence
-    @token || raise("Set HOMEBREW_GITHUB_API_TOKEN, or `gh auth login`, to install this private-repo formula")
+    unless @token
+      gh = GH_CANDIDATES.find { |path| File.executable?(path) }
+      @token = Utils.safe_popen_read(gh, "auth", "token").strip.presence if gh
+    end
+    @token || raise("Set HOMEBREW_GITHUB_API_TOKEN, or `gh auth login` with gh installed at one of #{GH_CANDIDATES}, to install this private-repo formula")
   end
 
   def _fetch(url:, resolved_url:, timeout:)
