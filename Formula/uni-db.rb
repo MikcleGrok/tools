@@ -31,7 +31,10 @@ class GitHubPrivateReleaseDownloadStrategy < CurlDownloadStrategy
       gh = GH_CANDIDATES.find { |path| File.executable?(path) }
       @token = Utils.safe_popen_read(gh, "auth", "token").strip.presence if gh
     end
-    @token || raise("Set HOMEBREW_GITHUB_API_TOKEN, or `gh auth login` with gh installed at one of #{GH_CANDIDATES}, to install this private-repo formula")
+    return @token if @token
+
+    raise "Set HOMEBREW_GITHUB_API_TOKEN, or `gh auth login` with gh installed " \
+          "at one of #{GH_CANDIDATES}, to install this private-repo formula"
   end
 
   def _fetch(url:, resolved_url:, timeout:)
@@ -49,7 +52,7 @@ end
 class UniDb < Formula
   desc "Read-only SQL CLI for production databases with macOS Keychain credentials"
   homepage "https://github.com/MikcleGrok/uni-db"
-  version "1.5.5"
+  version "1.5.6"
   release_asset = "uni-db-#{version}-darwin-arm64.tar.gz"
   artifact = ENV["HOMEBREW_UNI_DB_ARTIFACT"]
   if artifact
@@ -58,7 +61,7 @@ class UniDb < Formula
   else
     url "https://github.com/MikcleGrok/uni-db/releases/download/v#{version}/#{release_asset}",
         using: GitHubPrivateReleaseDownloadStrategy
-    sha256 "6712693976b68864fb1279d38a46d32cc85b13c4f1b407c023591b618f6172cf"
+    sha256 "330c425f6b2ec472dec1e7b1e8ac0dcd88eaa7a07d1f43e2927f9b6329f9cd63"
   end
   license "MIT"
   depends_on :macos
