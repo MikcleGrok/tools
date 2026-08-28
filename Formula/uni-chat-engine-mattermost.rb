@@ -19,6 +19,7 @@ class UniChatEngineMattermost < Formula
 
   test do
     assert_equal "uni-chat-engine-mattermost #{version}\n", shell_output("#{bin}/uni-chat-engine-mattermost --version")
+    assert_match "usage: uni-chat-engine-mattermost", shell_output("#{bin}/uni-chat-engine-mattermost --help")
     assert_match /^Authority=uni-release-selfsign$/, shell_output("codesign -dv --verbose=4 #{bin}/uni-chat-engine-mattermost 2>&1")
     system "codesign", "--verify", "--strict", bin/"uni-chat-engine-mattermost"
   end
