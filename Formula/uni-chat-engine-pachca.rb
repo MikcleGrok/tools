@@ -19,6 +19,7 @@ class UniChatEnginePachca < Formula
 
   test do
     assert_equal "uni-chat-engine-pachca #{version}\n", shell_output("#{bin}/uni-chat-engine-pachca --version")
+    assert_match "usage: uni-chat-engine-pachca", shell_output("#{bin}/uni-chat-engine-pachca --help")
     assert_match /^Authority=uni-release-selfsign$/, shell_output("codesign -dv --verbose=4 #{bin}/uni-chat-engine-pachca 2>&1")
     system "codesign", "--verify", "--strict", bin/"uni-chat-engine-pachca"
   end
