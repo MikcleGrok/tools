@@ -18,8 +18,17 @@ class UniChat < Formula
     bin.install "uni-chat", "uni-chatd", "uni-chat-tui", "uni-chat-auth"
   end
 
+  service do
+    run [opt_bin/"uni-chatd", "serve"]
+    keep_alive true
+    log_path "#{Dir.home}/.uni-chat/uni-chatd.log"
+    error_log_path "#{Dir.home}/.uni-chat/uni-chatd.log"
+  end
+
   test do
     assert_equal "uni-chat #{version}\n", shell_output("#{bin}/uni-chat --version")
+    assert_match "usage: uni-chat", shell_output("#{bin}/uni-chat --help")
+    assert_match "usage: uni-chatd", shell_output("#{bin}/uni-chatd --help")
     %w[uni-chat uni-chatd uni-chat-tui uni-chat-auth].each do |binary|
       assert_match /^Authority=uni-release-selfsign$/, shell_output("codesign -dv --verbose=4 #{bin}/#{binary} 2>&1")
       system "codesign", "--verify", "--strict", bin/binary
