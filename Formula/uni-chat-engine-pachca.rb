@@ -1,7 +1,7 @@
 class UniChatEnginePachca < Formula
   desc "Pachca engine adapter for uni-chat"
   homepage "https://github.com/MikcleGrok/uni-chat-pachca"
-  version "1.1.19"
+  version "1.1.27"
   release_asset = "uni-chat-engine-pachca-#{version}-darwin-arm64.tar.gz"
   artifact = ENV["HOMEBREW_UNI_CHAT_PACHCA_ARTIFACT"]
   if artifact

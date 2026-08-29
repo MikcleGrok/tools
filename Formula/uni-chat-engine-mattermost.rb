@@ -1,7 +1,7 @@
 class UniChatEngineMattermost < Formula
   desc "Mattermost engine adapter for uni-chat"
   homepage "https://github.com/MikcleGrok/uni-chat-mattermost"
-  version "0.1.24"
+  version "0.1.28"
   release_asset = "uni-chat-engine-mattermost-#{version}-darwin-arm64.tar.gz"
   artifact = ENV["HOMEBREW_UNI_CHAT_MATTERMOST_ARTIFACT"]
   if artifact

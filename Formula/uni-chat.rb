@@ -1,7 +1,7 @@
 class UniChat < Formula
   desc "Personal chat notifier, TUI and poster"
   homepage "https://github.com/MikcleGrok/uni-chat"
-  version "1.4.15"
+  version "1.4.53"
   release_asset = "uni-chat-#{version}-darwin-arm64.tar.gz"
   artifact = ENV["HOMEBREW_UNI_CHAT_ARTIFACT"]
   if artifact
