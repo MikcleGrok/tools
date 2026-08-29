@@ -16,6 +16,7 @@ class UniChat < Formula
 
   def install
     bin.install "uni-chat", "uni-chatd", "uni-chat-tui", "uni-chat-auth"
+    bin.install_symlink "uni-chat" => "uchat"
   end
 
   service do
@@ -27,6 +28,8 @@ class UniChat < Formula
 
   test do
     assert_equal "uni-chat #{version}\n", shell_output("#{bin}/uni-chat --version")
+    assert_predicate bin/"uchat", :symlink?
+    assert_equal "uni-chat", (bin/"uchat").readlink.to_s
     assert_match "usage: uni-chat", shell_output("#{bin}/uni-chat --help")
     assert_match "usage: uni-chatd", shell_output("#{bin}/uni-chatd --help")
     %w[uni-chat uni-chatd uni-chat-tui uni-chat-auth].each do |binary|
