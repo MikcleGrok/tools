@@ -8,7 +8,7 @@ class UniChat < Formula
     url "file://#{artifact}"
     sha256 ENV.fetch("HOMEBREW_UNI_CHAT_ARTIFACT_SHA256")
   else
-    url "https://github.com/MikcleGrok/uni-chat/releases/download/v1.4.60/uni-chat-1.4.60-darwin-arm64.tar.gz"
+    url "https://github.com/MikcleGrok/tools/releases/download/uni-chat-v1.4.60/uni-chat-1.4.60-darwin-arm64.tar.gz"
     sha256 "b28b9b56399249c02fdefd93122fcff9207a76475ac821f120ad70f2cf1f0390"
   end
   depends_on :macos
