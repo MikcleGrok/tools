@@ -17,7 +17,11 @@ class SecretdPrivateReleaseDownloadStrategy < CurlDownloadStrategy
     tag, filename = match.captures
     ohai "Downloading #{filename} from private release #{tag} via gh"
     dest_dir = temporary_path.dirname
-    system "gh", "release", "download", tag,
+    # Homebrew's build sandbox (superenv) strips PATH down to its own shims,
+    # so a bare "gh" would not resolve even though it works in a normal
+    # shell — resolve the dependency's own install location explicitly.
+    gh = Utils::Path.formula_opt_bin("gh")/"gh"
+    system gh.to_s, "release", "download", tag,
            "--repo", "MikcleGrok/secretd",
            "--pattern", filename,
            "--dir", dest_dir.to_s,
@@ -38,6 +42,7 @@ class Secretd < Formula
   sha256 "6dd1b1c4db79c7c58c6bf1983e122b5b4faac8bd3b98805f30d6f47e238b0dc1"
   license "MIT"
 
+  depends_on "gh" => :build
   depends_on :macos
 
   def install
