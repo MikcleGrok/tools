@@ -72,7 +72,7 @@ class Secretd < Formula
       assert_match version.to_s, shell_output("#{bin}/#{binary} version") if binary == "secretd"
       assert_match "Usage: secretctl", shell_output("#{bin}/#{binary} --help 2>&1") if binary == "secretctl"
     end
-    assert_match "secretd:", shell_output("#{bin}/secretd --help 2>&1")
+    assert_match "Usage: secretd", shell_output("#{bin}/secretd --help 2>&1")
     assert_predicate libexec/"secretd-writer", :executable?
     assert_match "secretd-writer", shell_output("#{libexec}/secretd-writer --help 2>&1", 2)
     # The Homebrew install path is a distribution surface the Makefile's own
