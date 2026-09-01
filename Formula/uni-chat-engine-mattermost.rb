@@ -1,15 +1,15 @@
 class UniChatEngineMattermost < Formula
   desc "Mattermost engine adapter for uni-chat"
   homepage "https://github.com/MikcleGrok/uni-chat-mattermost"
-  version "0.1.28"
+  version "0.1.29"
   release_asset = "uni-chat-engine-mattermost-#{version}-darwin-arm64.tar.gz"
   artifact = ENV["HOMEBREW_UNI_CHAT_MATTERMOST_ARTIFACT"]
   if artifact
     url "file://#{artifact}"
     sha256 ENV.fetch("HOMEBREW_UNI_CHAT_MATTERMOST_ARTIFACT_SHA256")
   else
-    url "https://github.com/MikcleGrok/tools/releases/download/uni-chat-engine-mattermost-v0.1.28/uni-chat-engine-mattermost-0.1.28-darwin-arm64.tar.gz"
-    sha256 "bc890f107ae08ff87a23a8c9e57286de35c56758cf96cf0ef3d9d680804896a8"
+    url "https://github.com/MikcleGrok/tools/releases/download/v0.1.29/uni-chat-engine-mattermost-0.1.29-darwin-arm64.tar.gz"
+    sha256 "ceba72dcb09a48d4ae376e98b10842949ae220553be309af0b63a06237cac0cf"
   end
   depends_on :macos
 
