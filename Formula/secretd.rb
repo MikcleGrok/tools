@@ -38,8 +38,8 @@ end
 class Secretd < Formula
   desc "macOS secret broker daemon and control CLI"
   homepage "https://github.com/MikcleGrok/secretd"
-  url "https://github.com/MikcleGrok/secretd/releases/download/v1.0.28/secretd-1.0.28-darwin-arm64.tar.gz", using: SecretdPrivateReleaseDownloadStrategy
-  sha256 "6dd1b1c4db79c7c58c6bf1983e122b5b4faac8bd3b98805f30d6f47e238b0dc1"
+  url "https://github.com/MikcleGrok/secretd/releases/download/v1.0.29/secretd-1.0.29-darwin-arm64.tar.gz", using: SecretdPrivateReleaseDownloadStrategy
+  sha256 "e325daf74bd57b397c680067632e056f974d880ff8457772f0ce375128bc349f"
   license "MIT"
 
   depends_on "gh" => :build
