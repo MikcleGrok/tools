@@ -2,27 +2,27 @@ class OpenrouterModelTracker < Formula
   desc "Regenerate the OpenRouter model comparison document from live data"
   homepage "https://openrouter.ai/"
   license "MIT"
-  version "1.16.3"
+  version "1.16.6"
 
   on_macos do
     on_arm do
-      url "https://github.com/MikcleGrok/tools/releases/download/openrouter-model-tracker-v1.16.3/openrouter-1.16.3-darwin-arm64.tar.gz"
-      sha256 "6cb701251f7620f7557eae6ba17392f0474ee33730ced3a0dcb02e149903b075"
+      url "https://github.com/MikcleGrok/tools/releases/download/openrouter-model-tracker-v1.16.6/openrouter-1.16.6-darwin-arm64.tar.gz"
+      sha256 "3a10ea24053da88edef8ae205b5c368f6a575fbcfbf4b2cdc0f7429ca28ad2ac"
     end
     on_intel do
-      url "https://github.com/MikcleGrok/tools/releases/download/openrouter-model-tracker-v1.16.3/openrouter-1.16.3-darwin-amd64.tar.gz"
-      sha256 "72b305cb8fbadaf1713dd61986a009c8ce7a5c87e17bdb0515a26489e269c844"
+      url "https://github.com/MikcleGrok/tools/releases/download/openrouter-model-tracker-v1.16.6/openrouter-1.16.6-darwin-amd64.tar.gz"
+      sha256 "14be9e5999fbdcc5f8d8a593289a2b0eba0c7e4858a9cfb8e52543f216fea523"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/MikcleGrok/tools/releases/download/openrouter-model-tracker-v1.16.3/openrouter-1.16.3-linux-arm64.tar.gz"
-      sha256 "9b7a97900f51cd3a98a06b62f070d10740b30b9e6c9f47791a051e470c96a3f0"
+      url "https://github.com/MikcleGrok/tools/releases/download/openrouter-model-tracker-v1.16.6/openrouter-1.16.6-linux-arm64.tar.gz"
+      sha256 "f9a4cd9f08661b49e7ebea00b82a69f43aae3b3097dedbba3c319db7a80acf1c"
     end
     on_intel do
-      url "https://github.com/MikcleGrok/tools/releases/download/openrouter-model-tracker-v1.16.3/openrouter-1.16.3-linux-amd64.tar.gz"
-      sha256 "4d66be68487958d4d32bdc1204f4a2b6b58a2b57fa30e8283f8878da5713e516"
+      url "https://github.com/MikcleGrok/tools/releases/download/openrouter-model-tracker-v1.16.6/openrouter-1.16.6-linux-amd64.tar.gz"
+      sha256 "3afb04e520c0ac4bf2f7d153853d3d962c353775e0a22704385482f48f42fe4b"
     end
   end
 
