@@ -1,15 +1,15 @@
 class UniChat < Formula
   desc "Personal chat notifier, TUI and poster"
   homepage "https://github.com/MikcleGrok/uni-chat"
-  version "1.4.74"
+  version "1.4.75"
   release_asset = "uni-chat-#{version}-darwin-arm64.tar.gz"
   artifact = ENV["HOMEBREW_UNI_CHAT_ARTIFACT"]
   if artifact
     url "file://#{artifact}"
     sha256 ENV.fetch("HOMEBREW_UNI_CHAT_ARTIFACT_SHA256")
   else
-    url "https://github.com/MikcleGrok/tools/releases/download/uni-chat-v1.4.74/uni-chat-1.4.74-darwin-arm64.tar.gz"
-    sha256 "8784ad84d9c32dfced79e3a5edd1b329233a95aab6000de6a2c2477442a650e7"
+    url "https://github.com/MikcleGrok/tools/releases/download/uni-chat-v1.4.75/uni-chat-1.4.75-darwin-arm64.tar.gz"
+    sha256 "8ea0bcf677ab94fb01b213a2e1575b102b65be25dec3b59468dd1ae6821bc7d2"
   end
   depends_on :macos
   depends_on "terminal-notifier"
