@@ -1,8 +1,8 @@
 class UniReleaseCli < Formula
-  APP_VERSION = "1.7.1"
+  APP_VERSION = "1.7.2"
   desc "CLI to manage the Release Manager (release.ecomz.net environment pool)"
   homepage "https://gitlab.ecomz.net/sboborykin/uni-release-cli"
-  url "ssh://git@gitlab.ecomz.net/sboborykin/uni-release-cli.git", using: :git, tag: "v1.7.1", revision: "de79a90859a9e94d2c085ad7bd8827846fced068"
+  url "ssh://git@gitlab.ecomz.net/sboborykin/uni-release-cli.git", using: :git, tag: "v1.7.2", revision: "07c66e966c8f094551ded0ca2de111e541ed8f50"
   version APP_VERSION
 
   depends_on "go" => :build
