@@ -1,11 +1,24 @@
 class UniReleaseCli < Formula
-  APP_VERSION = "1.6.0"
+  APP_VERSION = "1.7.0"
   desc "CLI to manage the Release Manager (release.ecomz.net environment pool)"
   homepage "https://gitlab.ecomz.net/sboborykin/uni-release-cli"
-  url "ssh://git@gitlab.ecomz.net/sboborykin/uni-release-cli.git", using: :git, tag: "v1.6.0", revision: "c6d21d4044e99e8e735aa9927b058af045559302"
+  url "ssh://git@gitlab.ecomz.net/sboborykin/uni-release-cli.git", using: :git, tag: "v1.7.0", revision: "149fd341c7750dc6fbd3dd5dac8b26f7819fd1b8"
   version APP_VERSION
 
   depends_on "go" => :build
+  # Hard dependencies of the packaged self-check (the `selfcheck` subcommand),
+  # which runs scripts/release-manager/release/release-full-cycle.sh:
+  #   coreutils — macOS ships no `timeout` at all, and the script requires it
+  #               (release-full-cycle.sh:1292), exiting 3 without it. The
+  #               coreutils formula installs it unprefixed as `timeout`.
+  #   jq        — required at release-full-cycle.sh:1294. Present in the system
+  #               on macOS 15, absent on older releases; the same reason it was
+  #               added to the test image's Dockerfile.
+  # python3 is deliberately NOT declared: Homebrew already requires the Xcode
+  # Command Line Tools, which provide /usr/bin/python3, and the script says so
+  # plainly (:1293) if it is ever missing anyway.
+  depends_on "coreutils"
+  depends_on "jq"
   depends_on :macos
 
   def install
@@ -65,6 +78,18 @@ class UniReleaseCli < Formula
     # require_signed_binaries).
     bin.install "uni-release-setup.sh" => "uni-release-setup"
     libexec.install "setup-signing.sh", "scripts/sign-binaries.sh", "daemon.entitlements"
+    # Vendored Release Manager operator tooling, used by the `selfcheck` subcommand.
+    # The three subdirectories must stay siblings: every script resolves its
+    # neighbours relatively ($self_dir/../lib, $self_dir/../uni-release), see
+    # scripts/release-manager/README.md. The parser test and its fixtures are
+    # deliberately NOT packaged — they are only reachable through the script's
+    # RELEASE_FULL_CYCLE_*_TEST hooks and have no runtime role.
+    (libexec/"release-manager").install "scripts/release-manager/README.md"
+    (libexec/"release-manager/lib").install Dir["scripts/release-manager/lib/*.sh"]
+    (libexec/"release-manager/uni-release").install Dir["scripts/release-manager/uni-release/*.sh"]
+    (libexec/"release-manager/release").install(
+      Dir["scripts/release-manager/release/*.sh"].reject { |f| f.end_with?("_parser_test.sh") },
+    )
     man1.install "man/uni-release-cli.1"
     bash_completion.install "completions/uni-release-cli.bash" => "uni-release-cli"
     zsh_completion.install "completions/_uni-release-cli"
@@ -99,7 +124,8 @@ class UniReleaseCli < Formula
   end
 
   test do
-    assert_match "usage: uni-release-cli", shell_output("#{bin}/uni-release-cli help")
+    help_output = shell_output("#{bin}/uni-release-cli help")
+    assert_match "usage: uni-release-cli", help_output
     version_output = shell_output("#{bin}/uni-release-cli version")
     if build.head?
       assert_match(/^uni-release-cli HEAD-[0-9a-f]+(?:-dirty)?\n$/, version_output)
@@ -117,5 +143,15 @@ class UniReleaseCli < Formula
     assert_match "always_confirm_qa_envs", (man1/"uni-release-cli.1").read
     assert_match "--help", (bash_completion/"uni-release-cli").read
     assert_match "rollout-confirm", (bash_completion/"uni-release-cli").read
+    # Packaging checks only: `selfcheck` itself is NEVER run here — it mutates a
+    # live QA stand. Its ALLOW_LIVE_QA_ROLLOUT guard would refuse anyway, but the
+    # rule is written down rather than left to the guard.
+    assert_predicate libexec/"release-manager/release/release-full-cycle.sh", :executable?
+    assert_predicate libexec/"release-manager/release/qa-stand-env-id.sh", :executable?
+    assert_predicate libexec/"release-manager/uni-release/uni-release-wait-argocd.sh", :executable?
+    assert_predicate libexec/"release-manager/lib/_deploy-doc-walk.sh", :file?
+    system "bash", "-n", libexec/"release-manager/release/release-full-cycle.sh"
+    assert_match "selfcheck", help_output
+    refute_predicate libexec/"release-manager/release/release-full-cycle_parser_test.sh", :exist?
   end
 end
