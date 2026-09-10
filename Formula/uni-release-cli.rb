@@ -1,8 +1,8 @@
 class UniReleaseCli < Formula
-  APP_VERSION = "1.7.2"
+  APP_VERSION = "1.7.3"
   desc "CLI to manage the Release Manager (release.ecomz.net environment pool)"
   homepage "https://gitlab.ecomz.net/sboborykin/uni-release-cli"
-  url "ssh://git@gitlab.ecomz.net/sboborykin/uni-release-cli.git", using: :git, tag: "v1.7.2", revision: "07c66e966c8f094551ded0ca2de111e541ed8f50"
+  url "ssh://git@gitlab.ecomz.net/sboborykin/uni-release-cli.git", using: :git, tag: "v1.7.3", revision: "c1d4a08f3204753f984e242634d2074b22ecc776"
   version APP_VERSION
 
   depends_on "go" => :build
@@ -67,7 +67,17 @@ class UniReleaseCli < Formula
     if which("swiftc")
       system "swiftc", "-O", "uni-touchid-auth.swift", "-o", bin/"uni-touchid-auth"
     else
-      opoo "swiftc not found — uni-touchid-auth not built; production/selzy mutations will be blocked"
+      # A hard failure, not a warning: uni-touchid-auth is no longer optional
+      # for production/selzy mutations only -- uni-release-gitlab-session
+      # store (the initial/ongoing GitLab credential setup every install
+      # needs) is now gated behind it too (internal/touchid.Confirm), so a
+      # missing helper means credentials can never be stored at all, which
+      # cascades to every read path failing as well. This formula already
+      # `depends_on :macos`, and Homebrew itself requires the Xcode Command
+      # Line Tools to build any formula from source, so a real end-user
+      # install missing swiftc specifically is the actual anomaly to refuse,
+      # not silently degrade past.
+      odie "swiftc not found -- uni-touchid-auth cannot be built. Touch ID confirmation is now required to bootstrap this tool at all (uni-release-gitlab-session store, not only production/selzy mutations). Install the Xcode Command Line Tools (xcode-select --install) or full Xcode, then retry."
     end
 
     # Deliberately NOT signed here: brew's build sandbox swaps $HOME, so
