@@ -2,27 +2,27 @@ class OpenrouterModelTracker < Formula
   desc "Regenerate the OpenRouter model comparison document from live data"
   homepage "https://openrouter.ai/"
   license "MIT"
-  version "1.18.5"
+  version "1.18.7"
 
   on_macos do
     on_arm do
-      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.18.5/openrouter-1.18.5-darwin-arm64.tar.gz"
-      sha256 "97ce51a606cc5a7abd1cc099d7f4eca5516dac5495bb162ca1cd365f941b6834"
+      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.18.7/openrouter-1.18.7-darwin-arm64.tar.gz"
+      sha256 "8dcdce81c4a69f690d2c99d9c0ee9cc927b6e630e8d76490d5df4b96d7434126"
     end
     on_intel do
-      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.18.5/openrouter-1.18.5-darwin-amd64.tar.gz"
-      sha256 "310870ad730d0f160344254fce2cec012c68543abc7f79a284ca9f882a0e9ce9"
+      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.18.7/openrouter-1.18.7-darwin-amd64.tar.gz"
+      sha256 "c1053ad235ca408ff4d7a888c86266203b480a48108a97d2168cccf622b14231"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.18.5/openrouter-1.18.5-linux-arm64.tar.gz"
-      sha256 "8b908109cb61e663ef1da864c823cfe5664ce0b48971bc375ef539c3c75611cf"
+      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.18.7/openrouter-1.18.7-linux-arm64.tar.gz"
+      sha256 "893662ed33a982dbdfdc58a24be0976f7e24eb4caedcc3772e0f1e8f55315102"
     end
     on_intel do
-      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.18.5/openrouter-1.18.5-linux-amd64.tar.gz"
-      sha256 "abd5763d60e4a80b4b06ba9adeb818539196353bca46847896026ab7ea9f9763"
+      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.18.7/openrouter-1.18.7-linux-amd64.tar.gz"
+      sha256 "c89b52017a5686bf588b6017bb6ad7dd53560fb0e1896759e7cbfeedfc6036ee"
     end
   end
 
