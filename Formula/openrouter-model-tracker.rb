@@ -2,27 +2,27 @@ class OpenrouterModelTracker < Formula
   desc "Regenerate the OpenRouter model comparison document from live data"
   homepage "https://openrouter.ai/"
   license "MIT"
-  version "1.19.0"
+  version "1.20.0"
 
   on_macos do
     on_arm do
-      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.19.0/openrouter-1.19.0-darwin-arm64.tar.gz"
-      sha256 "c902c4d776f10fa049797d98549653514c5a04bc6a8d8b8f63221dc89ef1ad1d"
+      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.20.0/openrouter-1.20.0-darwin-arm64.tar.gz"
+      sha256 "a552c03f8d01537d4ad981d3d3f756bfb0bf6d043b8cf7a519de666a21c07099"
     end
     on_intel do
-      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.19.0/openrouter-1.19.0-darwin-amd64.tar.gz"
-      sha256 "7943f40ffeaa7323fd9c603314bbaee362245ad61e307eeb8d8001ee2fc29007"
+      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.20.0/openrouter-1.20.0-darwin-amd64.tar.gz"
+      sha256 "aafac89675183b3c427232af8235e58f7238a960df3e80f48856f5735eaeb4b5"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.19.0/openrouter-1.19.0-linux-arm64.tar.gz"
-      sha256 "361d723fef01eca8e2ea464073bd42b437d8bd60e4a2d2b7d410a29d24606b89"
+      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.20.0/openrouter-1.20.0-linux-arm64.tar.gz"
+      sha256 "3c682785495bae91e2e58bcf46ff7007171dc844d03579d30e3c84bdb030af99"
     end
     on_intel do
-      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.19.0/openrouter-1.19.0-linux-amd64.tar.gz"
-      sha256 "9b0cdaa9a15584cd4a065d90ca6881df411f5ec0bc087cb2465ca3753f8e1654"
+      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.20.0/openrouter-1.20.0-linux-amd64.tar.gz"
+      sha256 "1acfa2b7b4acee77776bc82bfa19e64fef1ca9a823f83ba9a8b3bc4e076b3019"
     end
   end
 
