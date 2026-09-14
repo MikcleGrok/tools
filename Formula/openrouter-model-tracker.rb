@@ -2,27 +2,27 @@ class OpenrouterModelTracker < Formula
   desc "Regenerate the OpenRouter model comparison document from live data"
   homepage "https://openrouter.ai/"
   license "MIT"
-  version "1.20.0"
+  version "1.20.1"
 
   on_macos do
     on_arm do
-      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.20.0/openrouter-1.20.0-darwin-arm64.tar.gz"
-      sha256 "a552c03f8d01537d4ad981d3d3f756bfb0bf6d043b8cf7a519de666a21c07099"
+      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.20.1/openrouter-1.20.1-darwin-arm64.tar.gz"
+      sha256 "d2fa60e5b71d69367077ec1a4deae7196f332deeda92a8e02322bd5b19a57f38"
     end
     on_intel do
-      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.20.0/openrouter-1.20.0-darwin-amd64.tar.gz"
-      sha256 "aafac89675183b3c427232af8235e58f7238a960df3e80f48856f5735eaeb4b5"
+      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.20.1/openrouter-1.20.1-darwin-amd64.tar.gz"
+      sha256 "38bcef3c3d23cdf3b740bc0d0e27ff4f593e142797f5bb92113bb918b4658722"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.20.0/openrouter-1.20.0-linux-arm64.tar.gz"
-      sha256 "3c682785495bae91e2e58bcf46ff7007171dc844d03579d30e3c84bdb030af99"
+      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.20.1/openrouter-1.20.1-linux-arm64.tar.gz"
+      sha256 "81354fd26ab4b95d16491a784752c1ad941976ab867d445d76716707272556b4"
     end
     on_intel do
-      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.20.0/openrouter-1.20.0-linux-amd64.tar.gz"
-      sha256 "1acfa2b7b4acee77776bc82bfa19e64fef1ca9a823f83ba9a8b3bc4e076b3019"
+      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.20.1/openrouter-1.20.1-linux-amd64.tar.gz"
+      sha256 "f0c2916e6ed376d91cc3e1c4ffba25699d067f5c37e291d5815a68ee6a659f02"
     end
   end
 
