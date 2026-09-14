@@ -2,27 +2,27 @@ class OpenrouterModelTracker < Formula
   desc "Regenerate the OpenRouter model comparison document from live data"
   homepage "https://openrouter.ai/"
   license "MIT"
-  version "1.21.1"
+  version "1.21.2"
 
   on_macos do
     on_arm do
-      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.21.1/openrouter-1.21.1-darwin-arm64.tar.gz"
-      sha256 "22034a0f67f897b56968f65e4d0854e66d234f1bee37b9c1796e5cd932f932d7"
+      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.21.2/openrouter-1.21.2-darwin-arm64.tar.gz"
+      sha256 "b34cadfdb688c69631b98a00afb9830a0c55a59a509d1609d2fce7664a24ab3a"
     end
     on_intel do
-      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.21.1/openrouter-1.21.1-darwin-amd64.tar.gz"
-      sha256 "89e044f937e2f52c62bf4fd33e5338e249671cda6c276cad1c588a35b01d6a51"
+      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.21.2/openrouter-1.21.2-darwin-amd64.tar.gz"
+      sha256 "f08ef4c04f4a53534603e7362e6d3852020a1ac6f1a8f7ff7b6737ecd7f1f02a"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.21.1/openrouter-1.21.1-linux-arm64.tar.gz"
-      sha256 "1cf0948bef15f578a53fb5f0844eb2603a030844042745ee8973b2011f1a6f13"
+      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.21.2/openrouter-1.21.2-linux-arm64.tar.gz"
+      sha256 "2d81f0463af265b9249795210202df4b9c86340464c5050e4d7ee1caa2d1f28f"
     end
     on_intel do
-      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.21.1/openrouter-1.21.1-linux-amd64.tar.gz"
-      sha256 "7a82f9f521df4e43443a6a33a087b1b28bdfa34586169c9d8fa9570a401a0be6"
+      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.21.2/openrouter-1.21.2-linux-amd64.tar.gz"
+      sha256 "3a29068fea70cb820864ca4b186de18069e5212fac723a4f3cf0a453d3404e4f"
     end
   end
 
