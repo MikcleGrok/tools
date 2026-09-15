@@ -2,27 +2,27 @@ class OpenrouterModelTracker < Formula
   desc "Regenerate the OpenRouter model comparison document from live data"
   homepage "https://openrouter.ai/"
   license "MIT"
-  version "1.21.3"
+  version "1.21.4"
 
   on_macos do
     on_arm do
-      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.21.3/openrouter-1.21.3-darwin-arm64.tar.gz"
-      sha256 "269fc07738c3a5ac2871e2b27e176cfdf59a9dd642c093e9ea90027380f06210"
+      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.21.4/openrouter-1.21.4-darwin-arm64.tar.gz"
+      sha256 "9d81772b5e6f1cfa3acc4146cafc6c310e9643239e68e43780d0e15f98f60621"
     end
     on_intel do
-      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.21.3/openrouter-1.21.3-darwin-amd64.tar.gz"
-      sha256 "7e6ebbba2dddc79349620b8049aeda3757770252626df30ac7c15dc0509c4326"
+      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.21.4/openrouter-1.21.4-darwin-amd64.tar.gz"
+      sha256 "800b101545f0ae22780107de616a5481ae82cd8a8b7c88abb659180bcbf89ac7"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.21.3/openrouter-1.21.3-linux-arm64.tar.gz"
-      sha256 "faa7a740d9bc51678329c8002e63e9ff7c4d9e679d613e369cb988f22be796b7"
+      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.21.4/openrouter-1.21.4-linux-arm64.tar.gz"
+      sha256 "9de48f64d0b0b8e6d161d81e763dc5207dd5748432a5dbd563ef4e8566bccd6d"
     end
     on_intel do
-      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.21.3/openrouter-1.21.3-linux-amd64.tar.gz"
-      sha256 "1cf05e3b5597fdd86caa177229cf7232061bbff24807ba804ba83276d3e779d9"
+      url "https://github.com/MikcleGrok/openrouter-model-tracker/releases/download/v1.21.4/openrouter-1.21.4-linux-amd64.tar.gz"
+      sha256 "4313a1dfb9f3d86cf0b2e0da2714a608687e989b66dc3219bcd5dc43463d1447"
     end
   end
 
