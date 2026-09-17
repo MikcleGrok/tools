@@ -6,6 +6,10 @@ may override only the artifact path and its SHA-256 with the formula-specific
 `HOMEBREW_*_ARTIFACT` variables. Both paths run the same formula `install`,
 `test`, and service lifecycle; neither path builds from source.
 
+`ocstatusline` is the source-repository-release exception: its release assets
+come from `MikcleGrok/ocstatusline`, while all other tools remain released from
+`MikcleGrok/tools`.
+
 `uni-chat` and `secretd` declare Homebrew services. The service commands use
 `opt_bin`, so `brew services restart` follows the current keg after upgrades.
 `secretd` keeps registry and audit data outside the Homebrew prefix; migration
