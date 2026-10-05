@@ -1,8 +1,8 @@
 class UniReleaseCli < Formula
-  APP_VERSION = "1.7.3"
+  APP_VERSION = "1.7.6"
   desc "CLI to manage the Release Manager (release.ecomz.net environment pool)"
-  homepage "https://gitlab.ecomz.net/sboborykin/uni-release-cli"
-  url "ssh://git@gitlab.ecomz.net/sboborykin/uni-release-cli.git", using: :git, tag: "v1.7.3", revision: "c1d4a08f3204753f984e242634d2074b22ecc776"
+  homepage "https://gitlab.devteam.guru/sboborykin/uni-release-cli"
+  url "ssh://git@gitlab.devteam.guru/sboborykin/uni-release-cli.git", using: :git, tag: "v1.7.6", revision: "fb97678194c57d62cb76f2fe0d524e389eb33c65"
   version APP_VERSION
 
   depends_on "go" => :build
@@ -56,7 +56,7 @@ class UniReleaseCli < Formula
 
     cfg = File.exist?("uni-release-cli.config") ? File.read("uni-release-cli.config") : ""
     release_base = cfg[/^RELEASE_BASE=(.+)$/, 1]&.strip || "https://release.ecomz.net"
-    gitlab_base  = cfg[/^GITLAB_BASE=(.+)$/, 1]&.strip || "https://gitlab.ecomz.net"
+    gitlab_base  = cfg[/^GITLAB_BASE=(.+)$/, 1]&.strip || "https://gitlab.devteam.guru"
     version_ldflag = "-X gitlab.ecomz.net/uni/uni-release-cli/internal/version.Version=#{build_version}"
     cli_ldflags = "#{version_ldflag} -X main.releaseBase=#{release_base}"
     session_ldflags = "#{version_ldflag} -X main.releaseBase=#{release_base} -X main.gitlabBase=#{gitlab_base}"
