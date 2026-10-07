@@ -1,8 +1,8 @@
 class UniReleaseCli < Formula
-  APP_VERSION = "1.8.3"
+  APP_VERSION = "1.8.4"
   desc "CLI to manage the Release Manager (release.ecomz.net environment pool)"
   homepage "https://gitlab.devteam.guru/sboborykin/uni-release-cli"
-  url "ssh://git@gitlab.devteam.guru/sboborykin/uni-release-cli.git", using: :git, tag: "v1.8.3", revision: "fce8301152930847dfb666e7449ab0e75e915a9a"
+  url "ssh://git@gitlab.devteam.guru/sboborykin/uni-release-cli.git", using: :git, tag: "v1.8.4", revision: "b7ff9e7ec6fe7ee5264645a52378274a69f91e70"
   version APP_VERSION
 
   depends_on "go" => :build
@@ -113,11 +113,6 @@ class UniReleaseCli < Formula
     <<~EOS
       Next step — run the guided setup (idempotent, safe to re-run):
 
-          uni-release-setup
-
-      First create the local code-signing identity, then run the post-install setup:
-
-          #{opt_libexec}/setup-signing.sh
           uni-release-setup
 
       The setup signs the installed binaries and stores your GitLab login and
