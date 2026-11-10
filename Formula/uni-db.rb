@@ -52,7 +52,7 @@ end
 class UniDb < Formula
   desc "Read-only SQL CLI for production databases with macOS Keychain credentials"
   homepage "https://github.com/MikcleGrok/uni-db"
-  version "1.5.6"
+  version "1.6.0"
   release_asset = "uni-db-#{version}-darwin-arm64.tar.gz"
   artifact = ENV["HOMEBREW_UNI_DB_ARTIFACT"]
   if artifact
@@ -61,7 +61,7 @@ class UniDb < Formula
   else
     url "https://github.com/MikcleGrok/uni-db/releases/download/v#{version}/#{release_asset}",
         using: GitHubPrivateReleaseDownloadStrategy
-    sha256 "330c425f6b2ec472dec1e7b1e8ac0dcd88eaa7a07d1f43e2927f9b6329f9cd63"
+    sha256 "2f152f022bb2bf1e2d5258b2286e5961ba59edf32323db13382e5c352c3e4568"
   end
   license "MIT"
   depends_on :macos
