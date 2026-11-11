@@ -1,15 +1,15 @@
 class UniChatEnginePachca < Formula
   desc "Pachca engine adapter for uni-chat"
   homepage "https://github.com/MikcleGrok/uni-chat-pachca"
-  version "1.1.36"
+  version "1.1.37"
   release_asset = "uni-chat-engine-pachca-#{version}-darwin-arm64.tar.gz"
   artifact = ENV["HOMEBREW_UNI_CHAT_PACHCA_ARTIFACT"]
   if artifact
     url "file://#{artifact}"
     sha256 ENV.fetch("HOMEBREW_UNI_CHAT_PACHCA_ARTIFACT_SHA256")
   else
-    url "https://github.com/MikcleGrok/tools/releases/download/v1.1.36/uni-chat-engine-pachca-1.1.36-darwin-arm64.tar.gz"
-    sha256 "a65a079e7a3a650d934e74b83215e9d56299352cac774bf34a4c9bf4b9e6da37"
+    url "https://github.com/MikcleGrok/tools/releases/download/v1.1.37/uni-chat-engine-pachca-1.1.37-darwin-arm64.tar.gz"
+    sha256 "f9f83631363d2a78f7d7777f864c30fada55fbac6c3325a8b1142c3345549451"
   end
   depends_on :macos
 
